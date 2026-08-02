@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unidad de Tratamiento del Dolor · Córdoba — Dr. Franco Falco</title>
+<meta name="description" content="Unidad de Tratamiento del Dolor, Córdoba, Argentina. Neurocirugía y medicina del dolor. Datos de contacto e información sobre el sistema de seguimiento de pacientes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:      #0F1419;
+    --graphite: #5A6572;
+    --mute:     #8B949F;
+    --rule:     #E2E6EB;
+    --field:    #EDF0F4;
+    --surface:  #FFFFFF;
+    --carmine:  #B0182F;
+    --moss:     #2E7D5B;
+    --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: var(--sans); margin: 0; background: var(--field); color: var(--ink);
+         font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 18px 56px; }
+
+  /* ---------- Encabezado ---------- */
+  header { background: var(--surface); border-bottom: 1px solid var(--rule);
+           margin: 0 -18px 26px; padding: 22px 18px 20px; }
+  .hd { max-width: 684px; margin: 0 auto; }
+  .eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: .22em;
+             text-transform: uppercase; color: var(--mute); margin-bottom: 12px; }
+  header img { max-width: 300px; width: 100%; height: auto; display: block; }
+  h1 { font-size: 26px; font-weight: 600; letter-spacing: -.02em; margin: 16px 0 4px;
+       line-height: 1.25; }
+  .rol { color: var(--graphite); font-size: 16px; }
+
+  /* ---------- Secciones ---------- */
+  section { background: var(--surface); border: 1px solid var(--rule); border-radius: 3px;
+            padding: 22px; margin-bottom: 12px; }
+  h2 { font-family: var(--mono); font-size: 10px; text-transform: uppercase;
+       letter-spacing: .16em; color: var(--graphite); margin: 0 0 14px; font-weight: 500; }
+  p { margin: 0 0 12px; }
+  p:last-child { margin-bottom: 0; }
+  .lead { font-size: 17px; }
+  ul { margin: 0; padding-left: 20px; }
+  li { margin-bottom: 5px; }
+
+  /* ---------- Ficha de datos ----------
+     La página se presenta con la misma estructura que una ficha clínica: campo
+     rotulado en versalitas monoespaciadas y valor en la tipografía de texto. Es
+     la forma en que la Unidad registra cualquier dato, y acá cumple además una
+     función práctica: cada campo es verificable por separado. */
+  .dato { display: grid; grid-template-columns: 168px 1fr; gap: 10px;
+          padding: 9px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+  .dato:last-child { border-bottom: 0; }
+  .dato dt { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em;
+             text-transform: uppercase; color: var(--graphite); }
+  .dato dd { margin: 0; font-size: 16px; }
+  dl { margin: 0; }
+  a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px;
+      text-decoration-color: var(--mute); }
+  a:hover { text-decoration-color: var(--ink); }
+  a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 2px; }
+
+  .aviso { border-left: 3px solid var(--carmine); background: #FCEEF0;
+           padding: 13px 15px; font-size: 15px; margin-top: 4px; }
+  .aviso b { display: block; font-family: var(--mono); font-size: 10px;
+             text-transform: uppercase; letter-spacing: .14em; margin-bottom: 4px; }
+
+  footer { text-align: center; color: var(--mute); font-size: 13px; margin-top: 26px; }
+  footer .mono { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em;
+                 text-transform: uppercase; }
+
+  @media (max-width: 560px) {
+    h1 { font-size: 22px; }
+    .dato { grid-template-columns: 1fr; gap: 2px; padding: 11px 0; }
+    section { padding: 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <div class="eyebrow">Córdoba · Argentina</div>
+    <img src="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/logo_UTD_horizontal_520.png"
+         alt="Unidad de Tratamiento del Dolor">
+    <h1>Unidad de Tratamiento del Dolor</h1>
+    <div class="rol">Dr. Franco Falco — Neurocirugía y medicina del dolor</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <h2>La Unidad</h2>
+    <p class="lead">Atendemos pacientes con dolor crónico de origen raquídeo, neuropático y
+    generalizado, con tratamiento médico y procedimientos intervencionistas guiados por imagen.</p>
+    <p>La atención se desarrolla en instituciones de la ciudad de Córdoba y su zona de influencia.
+    Cada paciente recibe un seguimiento sistemático de su evolución, desde la consulta inicial
+    hasta los controles posteriores al procedimiento.</p>
+  </section>
+
+  <section>
+    <h2>Datos de contacto</h2>
+    <dl>
+      <div class="dato"><dt>Responsable</dt><dd>FALCO, Franco</dd></div>
+      <div class="dato"><dt>Matrícula profesional</dt><dd>M.P. 40.075/6, C.E. 21.804</dd></div>
+      <div class="dato"><dt>Especialidad</dt><dd>Neurocirugía · Medicina del dolor</dd></div>
+      <div class="dato"><dt>Domicilio</dt><dd>Fray Pérez 97, Villa Carlos Paz</dd></div>
+      <div class="dato"><dt>Teléfono</dt><dd>+549 3513629355</dd></div>
+      <div class="dato"><dt>Correo electrónico</dt><dd>francofalco.neurocirugia@gmail.com</dd></div>
+      <div class="dato"><dt>CUIT</dt><dd>20-37488973-8</dd></div>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Turnos y consultas</h2>
+    <p>Para solicitar un turno, reprogramarlo o realizar una consulta administrativa,
+    comuníquese por los medios indicados arriba.</p>
+    <div class="aviso">
+      <b>Esta no es una vía de urgencias</b>
+      Los mensajes se responden en horario de atención. Ante dolor de aparición súbita,
+      pérdida de fuerza en un miembro, alteración para orinar o controlar los esfínteres,
+      o fiebre luego de un procedimiento, concurra de inmediato a una guardia.
+    </div>
+  </section>
+
+  <section>
+    <h2>Seguimiento de pacientes</h2>
+    <p>La Unidad utiliza un sistema propio de seguimiento que envía a sus pacientes, por correo
+    electrónico y por mensajería, la confirmación de los turnos programados, los cuestionarios
+    periódicos de evolución y el acceso a la solicitud de recetas y de consultas virtuales.</p>
+    <p>Estos mensajes se envían únicamente a pacientes de la Unidad y siempre a partir de una
+    solicitud o de una atención previa. La información clínica no viaja en el mensaje: cada
+    aviso contiene un enlace personal a la aplicación de la Unidad, donde los datos quedan
+    protegidos.</p>
+    <p><b>La Unidad nunca solicita datos de tarjetas, contraseñas ni claves bancarias por
+    mensaje.</b> Si recibe un pedido de ese tipo, no responda y comuníquese con nosotros.</p>
+  </section>
+
+  <footer>
+    <div class="mono">Unidad de Tratamiento del Dolor · Córdoba</div>
+    <p>El contenido de este sitio tiene carácter informativo y no reemplaza la consulta médica.</p>
+  </footer>
+
+</div>
+</body>
+</html>
