@@ -3,149 +3,487 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Unidad de Tratamiento del Dolor · Córdoba — Dr. Franco Falco</title>
-<meta name="description" content="Unidad de Tratamiento del Dolor, Córdoba, Argentina. Neurocirugía y medicina del dolor. Datos de contacto e información sobre el sistema de seguimiento de pacientes.">
+<title>Unidad de Tratamiento del Dolor · Córdoba</title>
+<meta name="description" content="Unidad de Tratamiento del Dolor, Córdoba. Tratamiento médico e intervencionista del dolor crónico. Consultorios en Instituto Modelo de Cardiología y Sanatorio del Salvador.">
+<meta name="theme-color" content="#0F1419">
+<link rel="canonical" href="https://utd-cordoba.com.ar/">
+<meta property="og:title" content="Unidad de Tratamiento del Dolor · Córdoba">
+<meta property="og:description" content="Tratamiento médico e intervencionista del dolor crónico en Córdoba.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://utd-cordoba.com.ar/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  /* ============================================================
+     Paleta heredada de la aplicación clínica: quien llega desde un
+     mensaje reconoce el mismo sistema. El CARMÍN está reservado —en
+     la ficha significa dolor severo— y en este sitio aparece solo en
+     el aviso de urgencias. Las acciones son tinta, no color.
+     ============================================================ */
   :root {
-    --ink:      #0F1419;
-    --graphite: #5A6572;
-    --mute:     #8B949F;
-    --rule:     #E2E6EB;
-    --field:    #EDF0F4;
-    --surface:  #FFFFFF;
-    --carmine:  #B0182F;
-    --moss:     #2E7D5B;
+    --tinta:   #0F1419;
+    --grafito: #5A6572;
+    --tenue:   #8B949F;
+    --regla:   #E2E6EB;
+    --campo:   #F4F6F8;
+    --papel:   #FFFFFF;
+    --carmin:  #B0182F;
+    --musgo:   #2E7D5B;
     --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+    --ancho: 1060px;
+    --sombra: 0 1px 2px rgba(15,20,25,.04), 0 4px 16px rgba(15,20,25,.05);
   }
   * { box-sizing: border-box; }
-  body { font-family: var(--sans); margin: 0; background: var(--field); color: var(--ink);
-         font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 18px 56px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  body { font-family: var(--sans); margin: 0; background: var(--campo);
+         color: var(--tinta); font-size: 16.5px; line-height: 1.65;
+         -webkit-font-smoothing: antialiased; }
+  .env { max-width: var(--ancho); margin: 0 auto; padding: 0 24px; }
+  svg { display: block; }
 
-  /* ---------- Encabezado ---------- */
-  header { background: var(--surface); border-bottom: 1px solid var(--rule);
-           margin: 0 -18px 26px; padding: 22px 18px 20px; }
-  .hd { max-width: 684px; margin: 0 auto; }
-  .eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: .22em;
-             text-transform: uppercase; color: var(--mute); margin-bottom: 12px; }
-  header img { max-width: 300px; width: 100%; height: auto; display: block; }
-  h1 { font-size: 26px; font-weight: 600; letter-spacing: -.02em; margin: 16px 0 4px;
-       line-height: 1.25; }
-  .rol { color: var(--graphite); font-size: 16px; }
+  /* ---------- Barra fija ---------- */
+  .barra { position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,.94);
+           backdrop-filter: saturate(180%) blur(10px);
+           border-bottom: 1px solid var(--regla); transition: box-shadow .2s ease; }
+  .barra.baja { box-shadow: 0 1px 12px rgba(15,20,25,.07); }
+  .barra .env { display: flex; align-items: center; justify-content: space-between;
+                gap: 20px; height: 66px; }
+  .barra img { max-height: 38px; width: auto; }
+  .menu { display: flex; gap: 26px; align-items: center; }
+  .menu a { font-size: 14.5px; color: var(--grafito); text-decoration: none;
+            font-weight: 500; transition: color .15s ease; }
+  .menu a:hover { color: var(--tinta); }
+  .menu a:focus-visible { outline: 2px solid var(--tinta); outline-offset: 4px;
+                          border-radius: 2px; }
+  @media (max-width: 780px) { .menu { display: none; } }
+
+  /* ---------- Portada ---------- */
+  .portada { background: var(--papel); border-bottom: 1px solid var(--regla);
+             padding: 62px 0 56px; }
+  .rotulo { font-family: var(--mono); font-size: 10.5px; letter-spacing: .26em;
+            text-transform: uppercase; color: var(--tenue); margin-bottom: 20px; }
+  .portada h1 { font-size: 42px; font-weight: 600; letter-spacing: -.03em;
+                line-height: 1.12; margin: 0 0 20px; max-width: 15ch; }
+  .portada .lead { font-size: 19px; color: var(--grafito); max-width: 62ch; margin: 0; }
+  .credenciales { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+  .credenciales span { font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em;
+                       color: var(--grafito); background: var(--campo);
+                       border: 1px solid var(--regla); border-radius: 2px;
+                       padding: 6px 12px; }
 
   /* ---------- Secciones ---------- */
-  section { background: var(--surface); border: 1px solid var(--rule); border-radius: 3px;
-            padding: 22px; margin-bottom: 12px; }
-  h2 { font-family: var(--mono); font-size: 10px; text-transform: uppercase;
-       letter-spacing: .16em; color: var(--graphite); margin: 0 0 14px; font-weight: 500; }
-  p { margin: 0 0 12px; }
-  p:last-child { margin-bottom: 0; }
-  .lead { font-size: 17px; }
-  ul { margin: 0; padding-left: 20px; }
-  li { margin-bottom: 5px; }
+  .seccion { padding: 58px 0 0; }
+  .titulo { display: flex; align-items: baseline; gap: 16px; margin-bottom: 26px; }
+  .titulo h2 { font-size: 13px; font-family: var(--mono); font-weight: 500;
+               letter-spacing: .2em; text-transform: uppercase; color: var(--grafito);
+               margin: 0; white-space: nowrap; }
+  .titulo i { flex: 1; height: 1px; background: var(--regla); display: block; }
 
-  /* ---------- Ficha de datos ----------
-     La página se presenta con la misma estructura que una ficha clínica: campo
-     rotulado en versalitas monoespaciadas y valor en la tipografía de texto. Es
-     la forma en que la Unidad registra cualquier dato, y acá cumple además una
-     función práctica: cada campo es verificable por separado. */
-  .dato { display: grid; grid-template-columns: 168px 1fr; gap: 10px;
-          padding: 9px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
-  .dato:last-child { border-bottom: 0; }
-  .dato dt { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em;
-             text-transform: uppercase; color: var(--graphite); }
-  .dato dd { margin: 0; font-size: 16px; }
-  dl { margin: 0; }
-  a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px;
-      text-decoration-color: var(--mute); }
-  a:hover { text-decoration-color: var(--ink); }
-  a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 2px; }
+  /* ---------- Accesos ---------- */
+  .rejilla3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .via { display: flex; flex-direction: column; background: var(--papel);
+         border: 1px solid var(--regla); border-radius: 4px; padding: 26px 24px 24px;
+         text-decoration: none; color: inherit; box-shadow: var(--sombra);
+         transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+  .via:hover, .via:focus-visible { transform: translateY(-3px); border-color: var(--tinta);
+         box-shadow: 0 2px 4px rgba(15,20,25,.05), 0 12px 28px rgba(15,20,25,.09); }
+  .via:focus-visible { outline: 2px solid var(--tinta); outline-offset: 3px; }
+  .via .icono { width: 34px; height: 34px; color: var(--tinta); margin-bottom: 18px; }
+  .via .cond { font-family: var(--mono); font-size: 9.5px; letter-spacing: .16em;
+               text-transform: uppercase; color: var(--grafito); margin-bottom: 8px; }
+  .via h3 { font-size: 20px; font-weight: 600; letter-spacing: -.015em; margin: 0 0 8px; }
+  .via p { margin: 0; font-size: 14.5px; color: var(--grafito); flex: 1; }
+  .via .pie { display: flex; align-items: center; gap: 7px; margin-top: 18px;
+              font-size: 14px; font-weight: 600; color: var(--tinta); }
+  .via .pie svg { width: 15px; height: 15px; transition: transform .18s ease; }
+  .via:hover .pie svg { transform: translateX(4px); }
 
-  .aviso { border-left: 3px solid var(--carmine); background: #FCEEF0;
-           padding: 13px 15px; font-size: 15px; margin-top: 4px; }
-  .aviso b { display: block; font-family: var(--mono); font-size: 10px;
-             text-transform: uppercase; letter-spacing: .14em; margin-bottom: 4px; }
+  /* ---------- Consultorios ---------- */
+  .rejilla2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .sede { background: var(--papel); border: 1px solid var(--regla); border-radius: 4px;
+          padding: 26px 24px; box-shadow: var(--sombra); }
+  .sede h3 { font-size: 19px; font-weight: 600; letter-spacing: -.012em; margin: 0 0 4px; }
+  .sede .dir { display: flex; align-items: flex-start; gap: 8px; color: var(--grafito);
+               font-size: 14.5px; margin-bottom: 18px; }
+  .sede .dir svg { width: 16px; height: 16px; flex: 0 0 auto; margin-top: 3px;
+                   color: var(--tenue); }
+  .horario { display: grid; grid-template-columns: auto 1fr; gap: 4px 18px;
+             padding: 14px 0; border-top: 1px solid var(--regla);
+             border-bottom: 1px solid var(--regla); margin-bottom: 16px; }
+  .horario dt { font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+                text-transform: uppercase; color: var(--grafito); }
+  .horario dd { margin: 0; font-variant-numeric: tabular-nums; font-size: 15px; }
+  .turnos { font-size: 14px; color: var(--grafito); }
+  .turnos b { font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+              text-transform: uppercase; color: var(--tenue); font-weight: 500;
+              display: block; margin-bottom: 5px; }
+  .turnos a { color: var(--tinta); text-decoration: none; font-weight: 600;
+              border-bottom: 1px solid var(--regla); }
+  .turnos a:hover { border-bottom-color: var(--tinta); }
+  .sede.quirurgica { background: transparent; box-shadow: none;
+                     border-style: dashed; }
+  .sede.quirurgica p { margin: 0; color: var(--grafito); font-size: 14.5px; }
 
-  footer { text-align: center; color: var(--mute); font-size: 13px; margin-top: 26px; }
-  footer .mono { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em;
-                 text-transform: uppercase; }
+  /* ---------- Equipo ---------- */
+  .ficha { display: grid; grid-template-columns: 190px 1fr; gap: 30px;
+           background: var(--papel); border: 1px solid var(--regla); border-radius: 4px;
+           padding: 30px; box-shadow: var(--sombra); }
+  .ficha .foto { width: 190px; height: 190px; border-radius: 3px; overflow: hidden;
+                 background: var(--campo); }
+  .ficha .foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ficha h3 { font-size: 24px; font-weight: 600; letter-spacing: -.02em; margin: 0 0 4px; }
+  .ficha .rol { font-family: var(--mono); font-size: 11.5px; letter-spacing: .13em;
+                text-transform: uppercase; color: var(--grafito); margin-bottom: 20px; }
+  .lista { list-style: none; margin: 0 0 18px; padding: 0; }
+  .lista li { display: grid; grid-template-columns: 132px 1fr; gap: 16px;
+              padding: 7px 0; border-top: 1px solid var(--regla); font-size: 15px; }
+  .lista li:first-child { border-top: 0; padding-top: 0; }
+  .lista .que { font-family: var(--mono); font-size: 10.5px; letter-spacing: .11em;
+                text-transform: uppercase; color: var(--tenue); padding-top: 4px; }
+  .lista .donde { color: var(--tinta); }
+  .lista .donde small { display: block; color: var(--grafito); font-size: 13.5px; }
+  .matriculas { display: flex; flex-wrap: wrap; gap: 8px; }
+  .matriculas span { font-family: var(--mono); font-size: 11px; letter-spacing: .06em;
+                     color: var(--grafito); background: var(--campo);
+                     border: 1px solid var(--regla); border-radius: 2px; padding: 5px 10px; }
+  .proxima { margin-top: 16px; border: 1px dashed var(--regla); border-radius: 4px;
+             padding: 20px 24px; color: var(--grafito); font-size: 14.5px; }
 
-  @media (max-width: 560px) {
-    h1 { font-size: 22px; }
-    .dato { grid-template-columns: 1fr; gap: 2px; padding: 11px 0; }
-    section { padding: 18px; }
+  /* ---------- Urgencias ---------- */
+  .urgencia { display: flex; gap: 18px; background: #FCEEF0; border: 1px solid #F0C4CC;
+              border-left: 4px solid var(--carmin); border-radius: 4px; padding: 24px; }
+  .urgencia svg { width: 26px; height: 26px; color: var(--carmin); flex: 0 0 auto;
+                  margin-top: 2px; }
+  .urgencia .rot { font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em;
+                   text-transform: uppercase; color: var(--carmin); font-weight: 600;
+                   display: block; margin-bottom: 8px; }
+  .urgencia p { margin: 0; font-size: 15.5px; }
+
+  /* ---------- Seguimiento ---------- */
+  .nota { background: var(--papel); border: 1px solid var(--regla); border-radius: 4px;
+          padding: 26px 24px; box-shadow: var(--sombra); }
+  .nota p { margin: 0 0 12px; }
+  .nota p:last-child { margin-bottom: 0; font-size: 14.5px; color: var(--grafito); }
+
+  /* ---------- Pie ---------- */
+  .pie { margin-top: 62px; background: var(--tinta); color: #B9C2CC; padding: 44px 0 34px; }
+  .pie .cols { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; }
+  .pie h4 { font-family: var(--mono); font-size: 10px; letter-spacing: .2em;
+            text-transform: uppercase; color: #6B7682; margin: 0 0 14px; font-weight: 500; }
+  .pie .fila { display: grid; grid-template-columns: 120px 1fr; gap: 12px; padding: 5px 0;
+               font-size: 14.5px; }
+  .pie .fila span:first-child { font-family: var(--mono); font-size: 10.5px;
+        letter-spacing: .12em; text-transform: uppercase; color: #6B7682; padding-top: 4px; }
+  .pie a { color: #E6EAEE; text-decoration: none; border-bottom: 1px solid #39424D; }
+  .pie a:hover { border-bottom-color: #E6EAEE; }
+  .pie .legal { border-top: 1px solid #232C36; margin-top: 32px; padding-top: 18px;
+                font-size: 13px; color: #6B7682; }
+
+  /* ---------- Movimiento ----------
+     Una sola secuencia al cargar y micro-respuestas al pasar el cursor.
+     Nada disparado por scroll: la página se lee de corrido sin que se mueva. */
+  @keyframes surgir { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: none; } }
+  .anim { animation: surgir .55s cubic-bezier(.2,.6,.2,1) both; }
+  .d1 { animation-delay: .05s; } .d2 { animation-delay: .12s; } .d3 { animation-delay: .19s; }
+
+  @media (max-width: 900px) {
+    .rejilla3, .rejilla2 { grid-template-columns: 1fr; }
+    .portada h1 { font-size: 33px; max-width: none; }
+    .portada { padding: 44px 0 40px; }
+    .ficha { grid-template-columns: 1fr; gap: 22px; padding: 24px; }
+    .ficha .foto { width: 150px; height: 150px; }
+    .pie .cols { grid-template-columns: 1fr; gap: 28px; }
   }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  @media (max-width: 560px) {
+    .env { padding: 0 18px; }
+    .portada h1 { font-size: 28px; }
+    .portada .lead { font-size: 17px; }
+    .lista li { grid-template-columns: 1fr; gap: 2px; }
+    .lista .que { padding-top: 0; }
+    .pie .fila { grid-template-columns: 1fr; gap: 1px; }
+    .seccion { padding: 44px 0 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
 </style>
 </head>
 <body>
-<header>
-  <div class="hd">
-    <div class="eyebrow">Córdoba · Argentina</div>
-    <img src="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/logo_UTD_horizontal_520.png"
-         alt="Unidad de Tratamiento del Dolor">
+
+<div class="barra" id="barra">
+  <div class="env">
+    <a href="#" aria-label="Unidad de Tratamiento del Dolor">
+      <img src="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/logo_UTD_horizontal_520.png"
+           alt="Unidad de Tratamiento del Dolor">
+    </a>
+    <nav class="menu">
+      <a href="#acceso">Acceso</a>
+      <a href="#consultorios">Consultorios</a>
+      <a href="#equipo">Equipo</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</div>
+
+<header class="portada">
+  <div class="env">
+    <div class="rotulo">Córdoba · Argentina</div>
     <h1>Unidad de Tratamiento del Dolor</h1>
-    <div class="rol">Dr. Franco Falco — Neurocirugía y medicina del dolor</div>
+    <p class="lead">Atendemos a personas con dolor persistente: de la columna, dolor que se
+    irradia a un miembro, dolor neuropático y dolor generalizado. Combinamos tratamiento
+    médico con procedimientos mínimamente invasivos guiados por imagen, y medimos la
+    evolución de cada paciente control a control.</p>
+    <div class="credenciales">
+      <span>Neurocirugía</span>
+      <span>Medicina del dolor</span>
+      <span>Intervencionismo guiado por imagen</span>
+    </div>
   </div>
 </header>
 
-<div class="wrap">
+<main>
 
-  <section>
-    <h2>La Unidad</h2>
-    <p class="lead">Atendemos pacientes con dolor crónico de origen raquídeo, neuropático y
-    generalizado, con tratamiento médico y procedimientos intervencionistas guiados por imagen.</p>
-    <p>La atención se desarrolla en instituciones de la ciudad de Córdoba y su zona de influencia.
-    Cada paciente recibe un seguimiento sistemático de su evolución, desde la consulta inicial
-    hasta los controles posteriores al procedimiento.</p>
-  </section>
+  <section class="seccion env" id="acceso">
+    <div class="titulo"><h2>Acceso</h2><i></i></div>
+    <div class="rejilla3">
 
-  <section>
-    <h2>Datos de contacto</h2>
-    <dl>
-      <div class="dato"><dt>Responsable</dt><dd>FALCO, Franco</dd></div>
-      <div class="dato"><dt>Matrícula profesional</dt><dd>M.P. 40.075/6, C.E. 21.804</dd></div>
-      <div class="dato"><dt>Especialidad</dt><dd>Neurocirugía · Medicina del dolor</dd></div>
-      <div class="dato"><dt>Teléfono</dt><dd>+549 3513198607</dd></div>
-      <div class="dato"><dt>Correo electrónico</dt><dd>francofalco.neurocirugia@gmail.com</dd></div>
-      <div class="dato"><dt>CUIT</dt><dd>20-37488973-8</dd></div>
-    </dl>
-  </section>
+      <a class="via anim d1" href="mailto:drfalco.recetas@gmail.com?subject=Solicitud%20de%20recetas">
+        <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M8 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2"/>
+          <rect x="8" y="2" width="8" height="4" rx="1"/>
+          <path d="M9 13h6M12 10v6"/>
+        </svg>
+        <div class="cond">Solo pacientes de la Unidad</div>
+        <h3>Solicitar recetas</h3>
+        <p>Envíe un correo en blanco y recibirá en el momento su enlace personal para pedir
+        la renovación. El pedido lo revisa el profesional antes de emitirse. Si todavía no
+        es paciente, primero solicite un turno.</p>
+        <span class="pie">Escribir al buzón
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
 
-  <section>
-    <h2>Turnos y consultas</h2>
-    <p>Para solicitar un turno, reprogramarlo o realizar una consulta administrativa,
-    comuníquese por los medios indicados arriba.</p>
-    <div class="aviso">
-      <b>Esta no es una vía de urgencias</b>
-      Los mensajes se responden en horario de atención. Ante dolor de aparición súbita,
-      pérdida de fuerza en un miembro, alteración para orinar o controlar los esfínteres,
-      o fiebre luego de un procedimiento, concurra de inmediato a una guardia.
+      <a class="via anim d2" href="https://wa.me/5493513198607?text=Hola%2C%20quisiera%20solicitar%20un%20turno%20en%20la%20Unidad%20de%20Tratamiento%20del%20Dolor.">
+        <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="16" rx="2"/>
+          <path d="M3 10h18M8 3v4M16 3v4"/>
+          <path d="M9 15l2 2 4-4"/>
+        </svg>
+        <div class="cond">Primera consulta o seguimiento</div>
+        <h3>Pedir un turno</h3>
+        <p>Presencial en nuestros consultorios o por videollamada. Escríbanos por WhatsApp y
+        coordinamos día y horario. No hace falta ser paciente de la Unidad.</p>
+        <span class="pie">Escribir por WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="via anim d3" href="https://wa.me/5493513198607?text=Hola%2C%20tengo%20una%20consulta." id="contacto">
+        <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 15a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"/>
+          <path d="M8 9h8M8 13h5"/>
+        </svg>
+        <div class="cond">Consultas administrativas</div>
+        <h3>Escribirnos</h3>
+        <p>Dudas sobre un turno, estudios previos, coberturas o comprobantes. También por
+        correo a francofalco.neurocirugia@gmail.com. Los mensajes se leen en horario de
+        atención, de lunes a viernes.</p>
+        <span class="pie">Escribir por WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
     </div>
   </section>
 
-  <section>
-    <h2>Seguimiento de pacientes</h2>
-    <p>La Unidad utiliza un sistema propio de seguimiento que envía a sus pacientes, por correo
-    electrónico y por mensajería, la confirmación de los turnos programados, los cuestionarios
-    periódicos de evolución y el acceso a la solicitud de recetas y de consultas virtuales.</p>
-    <p>Estos mensajes se envían únicamente a pacientes de la Unidad y siempre a partir de una
-    solicitud o de una atención previa. La información clínica no viaja en el mensaje: cada
-    aviso contiene un enlace personal a la aplicación de la Unidad, donde los datos quedan
-    protegidos.</p>
-    <p><b>La Unidad nunca solicita datos de tarjetas, contraseñas ni claves bancarias por
-    mensaje.</b> Si recibe un pedido de ese tipo, no responda y comuníquese con nosotros.</p>
+  <section class="seccion env">
+    <div class="titulo"><h2>Urgencias</h2><i></i></div>
+    <div class="urgencia">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/>
+        <path d="M12 9v4M12 17h.01"/>
+      </svg>
+      <div>
+        <span class="rot">Ninguna de estas vías es de urgencias</span>
+        <p>Ante cualquier síntoma de alarma o de gravedad, no espere respuesta por estos
+        medios: diríjase a la guardia médica de su centro de referencia o llame al
+        <b>107</b>.</p>
+      </div>
+    </div>
   </section>
 
-  <footer>
-    <div class="mono">Unidad de Tratamiento del Dolor · Córdoba</div>
-    <p>El contenido de este sitio tiene carácter informativo y no reemplaza la consulta médica.</p>
-  </footer>
+  <section class="seccion env" id="consultorios">
+    <div class="titulo"><h2>Consultorios</h2><i></i></div>
+    <div class="rejilla2">
 
-</div>
+      <div class="sede">
+        <h3>Instituto Modelo de Cardiología</h3>
+        <div class="dir">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Av. Sagrada Familia 359, Córdoba</span>
+        </div>
+        <dl class="horario">
+          <dt>Miércoles</dt><dd>12.00 a 14.00</dd>
+          <dt>Viernes</dt><dd>11.30 a 13.30</dd>
+        </dl>
+        <div class="turnos"><b>Turnos</b>
+          <a href="tel:+543514858585">0351 485-8585</a> ·
+          <a href="https://wa.me/5493516607701">WhatsApp 351 660-7701</a> ·
+          <a href="https://www.imcnet.com.ar" target="_blank" rel="noopener">imcnet.com.ar</a>
+        </div>
+      </div>
+
+      <div class="sede">
+        <h3>Sanatorio del Salvador</h3>
+        <div class="dir">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Gral. Deheza 542, barrio General Paz, Córdoba</span>
+        </div>
+        <dl class="horario">
+          <dt>Lunes</dt><dd>12.30 a 16.00</dd>
+          <dt>Viernes</dt><dd>14.00 a 17.00</dd>
+        </dl>
+        <div class="turnos"><b>Turnos</b>
+          <a href="tel:+543514529600">0351 452-9600</a> ·
+          <a href="https://wa.me/5493512002323">WhatsApp 351 200-2323</a> ·
+          <a href="https://sanatoriodelsalvador.com" target="_blank" rel="noopener">sanatoriodelsalvador.com</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sede quirurgica" style="margin-top:16px;">
+      <h3 style="margin-bottom:8px;">Sanatorio Parque</h3>
+      <p>Realizamos procedimientos e intervenciones. No hay consultorio: los turnos de
+      consulta se atienden en las sedes de arriba o por videollamada.</p>
+    </div>
+  </section>
+
+  <section class="seccion env" id="equipo">
+    <div class="titulo"><h2>Equipo</h2><i></i></div>
+
+    <div class="ficha">
+      <div class="foto">
+        <picture>
+          <source srcset="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/retrato_falco_640.webp" type="image/webp">
+          <img src="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/retrato_falco_640.jpg"
+               alt="Dr. Franco Falco" width="640" height="640" loading="lazy">
+        </picture>
+      </div>
+      <div>
+        <h3>Dr. Franco Falco</h3>
+        <div class="rol">Neurocirugía · Medicina del dolor</div>
+        <ul class="lista">
+          <li><span class="que">Médico</span>
+              <span class="donde">Universidad Nacional de Córdoba<small>Egresado en 2016</small></span></li>
+          <li><span class="que">Neurocirugía</span>
+              <span class="donde">Especialista · Consejo Médico de la Provincia de Córdoba</span></li>
+          <li><span class="que">Medicina del dolor</span>
+              <span class="donde">Especialista · Universidad Favaloro</span></li>
+          <li><span class="que">Staff</span>
+              <span class="donde">Sanatorio del Salvador e Instituto Modelo de Cardiología<small>Hospital Infantil Municipal, Hospital Materno Neonatal Dr. Ramón Carrillo y Hospital Materno Provincial Dr. Raúl F. Lucini</small></span></li>
+          <li><span class="que">Investigación</span>
+              <span class="donde">Inteligencia artificial aplicada a neuroimágenes<small>Asociación Argentina de Neurocirugía · Asociación de Médicos Neurocirujanos de la Provincia de Córdoba</small></span></li>
+        </ul>
+        <div class="matriculas">
+          <span>M.P. 40.075/6</span>
+          <span>C.E. 21.804</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ficha" style="margin-top:16px;">
+      <div class="foto" aria-hidden="true"></div>
+      <div>
+        <h3>Dr. Javier Calvimontes</h3>
+        <div class="rol">Medicina del dolor</div>
+        <ul class="lista">
+          <li><span class="que">Formación</span>
+              <span class="donde">REEMPLAZAR: título, universidad y año</span></li>
+          <li><span class="que">Especialidad</span>
+              <span class="donde">REEMPLAZAR: especialidad y entidad que la otorgó</span></li>
+        </ul>
+        <div class="matriculas">
+          <span>REEMPLAZAR: matrícula</span>
+        </div>
+      </div>
+    </div>
+
+    <!--
+      INCORPORACIONES FUTURAS
+      Cuando se sumen la nutricionista y el psicólogo, se copia un bloque
+      <div class="ficha"> completo y se pega acá. No los anuncio antes de que
+      atiendan: una página que enumera profesionales inexistentes compromete a la
+      Unidad frente a quien llega buscando justamente eso.
+    -->
+    <div class="proxima">La Unidad incorpora progresivamente otras disciplinas al abordaje
+    del dolor crónico. Las novedades se publican en esta página.</div>
+  </section>
+
+  <section class="seccion env">
+    <div class="titulo"><h2>Seguimiento</h2><i></i></div>
+    <div class="nota">
+      <p>Si es paciente de la Unidad, va a recibir por correo y por WhatsApp los
+      cuestionarios de control, la confirmación de sus turnos y el acceso a sus recetas.
+      Esos mensajes se envían únicamente a pacientes y siempre a partir de una atención
+      previa.</p>
+      <p>La información clínica no viaja dentro del mensaje: cada aviso contiene un enlace
+      personal a la aplicación de la Unidad. <b>Nunca le vamos a pedir datos de tarjetas,
+      contraseñas ni claves bancarias por mensaje.</b></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <div class="env">
+    <div class="cols">
+      <div>
+        <h4>Contacto</h4>
+        <div class="fila"><span>Responsable</span><span>FALCO, Franco</span></div>
+        <div class="fila"><span>Teléfono</span><span><a href="https://wa.me/5493513198607">351 319-8607</a></span></div>
+        <div class="fila"><span>Correo</span><span><a href="mailto:francofalco.neurocirugia@gmail.com">francofalco.neurocirugia@gmail.com</a></span></div>
+        <div class="fila"><span>Recetas</span><span><a href="mailto:drfalco.recetas@gmail.com">drfalco.recetas@gmail.com</a></span></div>
+      </div>
+      <div>
+        <h4>Consultorios</h4>
+        <div class="fila"><span>IMC</span><span>Av. Sagrada Familia 359</span></div>
+        <div class="fila"><span>Salvador</span><span>Gral. Deheza 542</span></div>
+      </div>
+    </div>
+    <p class="legal">El contenido de este sitio tiene carácter informativo y no reemplaza la
+    consulta médica. · <a href="/privacidad.html">Política de privacidad</a></p>
+  </div>
+</footer>
+
+<script>
+  // Sombra de la barra al desplazarse. Único efecto ligado al scroll, y pasivo
+  // para no interferir con el desplazamiento en el teléfono.
+  (function () {
+    var barra = document.getElementById('barra');
+    var puesta = false;
+    window.addEventListener('scroll', function () {
+      var baja = window.scrollY > 8;
+      if (baja !== puesta) { barra.classList.toggle('baja', baja); puesta = baja; }
+    }, { passive: true });
+  })();
+</script>
+
 </body>
 </html>
