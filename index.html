@@ -95,10 +95,10 @@
                text-transform: uppercase; color: var(--grafito); margin-bottom: 8px; }
   .via h3 { font-size: 20px; font-weight: 600; letter-spacing: -.015em; margin: 0 0 8px; }
   .via p { margin: 0; font-size: 14.5px; color: var(--grafito); flex: 1; }
-  .via .pie { display: flex; align-items: center; gap: 7px; margin-top: 18px;
+  .via .cta { display: flex; align-items: center; gap: 7px; margin-top: 18px;
               font-size: 14px; font-weight: 600; color: var(--tinta); }
-  .via .pie svg { width: 15px; height: 15px; transition: transform .18s ease; }
-  .via:hover .pie svg { transform: translateX(4px); }
+  .via .cta svg { width: 15px; height: 15px; transition: transform .18s ease; }
+  .via:hover .cta svg { transform: translateX(4px); }
 
   /* ---------- Consultorios ---------- */
   .rejilla2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
@@ -109,12 +109,6 @@
                font-size: 14.5px; margin-bottom: 18px; }
   .sede .dir svg { width: 16px; height: 16px; flex: 0 0 auto; margin-top: 3px;
                    color: var(--tenue); }
-  .horario { display: grid; grid-template-columns: auto 1fr; gap: 4px 18px;
-             padding: 14px 0; border-top: 1px solid var(--regla);
-             border-bottom: 1px solid var(--regla); margin-bottom: 16px; }
-  .horario dt { font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
-                text-transform: uppercase; color: var(--grafito); }
-  .horario dd { margin: 0; font-variant-numeric: tabular-nums; font-size: 15px; }
   .turnos { font-size: 14px; color: var(--grafito); }
   .turnos b { font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
               text-transform: uppercase; color: var(--tenue); font-weight: 500;
@@ -125,6 +119,25 @@
   .sede.quirurgica { background: transparent; box-shadow: none;
                      border-style: dashed; }
   .sede.quirurgica p { margin: 0; color: var(--grafito); font-size: 14.5px; }
+  /* Agenda por profesional dentro de cada centro */
+  .agenda { border-top: 1px solid var(--regla); padding-top: 14px; margin-bottom: 16px; }
+  .agenda + .agenda { margin-top: -4px; }
+  .agenda .quien { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; }
+  .agenda dl { display: grid; grid-template-columns: auto 1fr; gap: 3px 18px; margin: 0; }
+  .agenda dt { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em;
+               text-transform: uppercase; color: var(--grafito); padding-top: 2px; }
+  .agenda dd { margin: 0; font-variant-numeric: tabular-nums; font-size: 14.5px; }
+  .agenda .apunte { font-size: 13px; color: var(--tenue); margin-top: 4px; }
+
+  /* Galería de procedimientos: sobria, sin ampliación ni pie de foto largo */
+  .galeria { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .galeria figure { margin: 0; border-radius: 3px; overflow: hidden; background: var(--papel);
+                    border: 1px solid var(--regla); aspect-ratio: 4/3; }
+  .galeria img { width: 100%; height: 100%; object-fit: cover; display: block;
+                 transition: transform .3s ease; }
+  .galeria figure:hover img { transform: scale(1.03); }
+  .aclaracion { font-size: 13.5px; color: var(--grafito); margin: 14px 0 0; }
+  @media (max-width: 900px) { .galeria { grid-template-columns: repeat(2, 1fr); } }
 
   /* ---------- Equipo ---------- */
   .ficha { display: grid; grid-template-columns: 190px 1fr; gap: 30px;
@@ -223,6 +236,7 @@
       <a href="#acceso">Acceso</a>
       <a href="#consultorios">Consultorios</a>
       <a href="#equipo">Equipo</a>
+      <a href="#procedimientos">Procedimientos</a>
       <a href="#contacto">Contacto</a>
     </nav>
   </div>
@@ -262,7 +276,7 @@
         <p>Envíe un correo en blanco y recibirá en el momento su enlace personal para pedir
         la renovación. El pedido lo revisa el profesional antes de emitirse. Si todavía no
         es paciente, primero solicite un turno.</p>
-        <span class="pie">Escribir al buzón
+        <span class="cta">Escribir al buzón
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -279,7 +293,7 @@
         <h3>Pedir un turno</h3>
         <p>Presencial en nuestros consultorios o por videollamada. Escríbanos por WhatsApp y
         coordinamos día y horario. No hace falta ser paciente de la Unidad.</p>
-        <span class="pie">Escribir por WhatsApp
+        <span class="cta">Escribir por WhatsApp
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -296,7 +310,7 @@
         <p>Dudas sobre un turno, estudios previos, coberturas o comprobantes. También por
         correo a francofalco.neurocirugia@gmail.com. Los mensajes se leen en horario de
         atención, de lunes a viernes.</p>
-        <span class="pie">Escribir por WhatsApp
+        <span class="cta">Escribir por WhatsApp
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -325,47 +339,77 @@
   <section class="seccion env" id="consultorios">
     <div class="titulo"><h2>Consultorios</h2><i></i></div>
     <div class="rejilla2">
-
       <div class="sede">
         <h3>Instituto Modelo de Cardiología</h3>
-        <div class="dir">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>
-          </svg>
-          <span>Av. Sagrada Familia 359, Córdoba</span>
+        <div class="dir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Av. Sagrada Familia 359, Córdoba</span></div>
+        <div class="agenda">
+          <div class="quien">Dr. Falco</div>
+          <dl>
+            <dt>Miércoles</dt><dd>12.00 a 14.00</dd>
+            <dt>Viernes</dt><dd>11.30 a 13.30</dd>
+          </dl>
         </div>
-        <dl class="horario">
-          <dt>Miércoles</dt><dd>12.00 a 14.00</dd>
-          <dt>Viernes</dt><dd>11.30 a 13.30</dd>
-        </dl>
+        <div class="agenda">
+          <div class="quien">Dr. Calvimontes</div>
+          <dl>
+            <dt>Lunes</dt><dd>12.00 a 14.00</dd>
+            <dt>Miércoles</dt><dd>12.00 a 14.00</dd>
+          </dl>
+        </div>
         <div class="turnos"><b>Turnos</b>
           <a href="tel:+543514858585">0351 485-8585</a> ·
           <a href="https://wa.me/5493516607701">WhatsApp 351 660-7701</a> ·
           <a href="https://www.imcnet.com.ar" target="_blank" rel="noopener">imcnet.com.ar</a>
         </div>
       </div>
-
       <div class="sede">
         <h3>Sanatorio del Salvador</h3>
-        <div class="dir">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>
-          </svg>
-          <span>Gral. Deheza 542, barrio General Paz, Córdoba</span>
+        <div class="dir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Gral. Deheza 542, barrio General Paz, Córdoba</span></div>
+        <div class="agenda">
+          <div class="quien">Dr. Falco</div>
+          <dl>
+            <dt>Lunes</dt><dd>12.30 a 16.00</dd>
+            <dt>Viernes</dt><dd>14.00 a 17.00</dd>
+          </dl>
         </div>
-        <dl class="horario">
-          <dt>Lunes</dt><dd>12.30 a 16.00</dd>
-          <dt>Viernes</dt><dd>14.00 a 17.00</dd>
-        </dl>
         <div class="turnos"><b>Turnos</b>
           <a href="tel:+543514529600">0351 452-9600</a> ·
           <a href="https://wa.me/5493512002323">WhatsApp 351 200-2323</a> ·
           <a href="https://sanatoriodelsalvador.com" target="_blank" rel="noopener">sanatoriodelsalvador.com</a>
         </div>
       </div>
-
+      <div class="sede">
+        <h3>Hospital Italiano</h3>
+        <div class="dir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Roma 550, barrio General Paz, Córdoba</span></div>
+        <div class="agenda">
+          <div class="quien">Dr. Calvimontes</div>
+          <dl>
+            <dt>Martes</dt><dd>11.00 a 14.00</dd>
+            <dt>Viernes</dt><dd>11.00 a 14.00</dd>
+          </dl>
+          <div class="apunte">Los viernes, consultorio de enfermedad de Parkinson y trastornos del movimiento.</div>
+        </div>
+        <div class="turnos"><b>Turnos</b>
+          <a href="tel:+543514106500">0351 410-6500</a> ·
+          <a href="https://wa.me/5493516332461">WhatsApp 351 633-2461</a> ·
+          <a href="https://www.hospital-italiano.org.ar" target="_blank" rel="noopener">hospital-italiano.org.ar</a>
+        </div>
+      </div>
+      <div class="sede">
+        <h3>Clínica Universitaria Reina Fabiola</h3>
+        <div class="dir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Paseo del Jockey · Elías Yofre 1050, barrio Jardín, Córdoba</span></div>
+        <div class="agenda">
+          <div class="quien">Dr. Calvimontes</div>
+          <dl>
+            <dt>Jueves</dt><dd>18.00 a 20.00</dd>
+            <dt>Viernes</dt><dd>16.30 a 18.00</dd>
+          </dl>
+        </div>
+        <div class="turnos"><b>Turnos</b>
+          <a href="tel:+543514142121">0351 414-2121</a> ·
+          <a href="https://curf.com.ar" target="_blank" rel="noopener">curf.com.ar</a>
+        </div>
+      </div>
     </div>
 
     <div class="sede quirurgica" style="margin-top:16px;">
@@ -381,8 +425,8 @@
     <div class="ficha">
       <div class="foto">
         <picture>
-          <source srcset="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/retrato_falco_640.webp" type="image/webp">
-          <img src="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/retrato_falco_640.jpg"
+          <source srcset="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/dr_falco_640.webp" type="image/webp">
+          <img src="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/dr_falco_640.jpg"
                alt="Dr. Franco Falco" width="640" height="640" loading="lazy">
         </picture>
       </div>
@@ -409,18 +453,30 @@
     </div>
 
     <div class="ficha" style="margin-top:16px;">
-      <div class="foto" aria-hidden="true"></div>
+      <div class="foto">
+        <picture>
+          <source srcset="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/dr_calvimontes_640.webp" type="image/webp">
+          <img src="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/dr_calvimontes_640.jpg"
+               alt="Dr. Carlos Javier Calvimontes" width="640" height="640" loading="lazy">
+        </picture>
+      </div>
       <div>
-        <h3>Dr. Javier Calvimontes</h3>
-        <div class="rol">Medicina del dolor</div>
+        <h3>Dr. Carlos Javier Calvimontes</h3>
+        <div class="rol">Neurocirugía funcional · Medicina del dolor</div>
         <ul class="lista">
-          <li><span class="que">Formación</span>
-              <span class="donde">REEMPLAZAR: título, universidad y año</span></li>
-          <li><span class="que">Especialidad</span>
-              <span class="donde">REEMPLAZAR: especialidad y entidad que la otorgó</span></li>
+          <li><span class="que">Médico cirujano</span>
+              <span class="donde">Universidad Nacional de Córdoba<small>Egresado en 2009</small></span></li>
+          <li><span class="que">Neurocirugía</span>
+              <span class="donde">Especialista · Hospital Nuestra Señora de la Misericordia, Córdoba</span></li>
+          <li><span class="que">Neurocirugía funcional</span>
+              <span class="donde">Especialista en cirugía estereotáctica, neurocirugía funcional y radiocirugía · Hospital Italiano de Buenos Aires</span></li>
+          <li><span class="que">Medicina del dolor</span>
+              <span class="donde">Maestría en abordaje integral del dolor · Universidad Francisco de Vitoria, Madrid<small>Abbott Neuromodulation Fellowship CPT LatAm</small></span></li>
+          <li><span class="que">Staff</span>
+              <span class="donde">Hospital Italiano de Córdoba y Hospital Córdoba<small>Neuroestimulación, tratamiento de la espasticidad y trastornos del movimiento</small></span></li>
         </ul>
         <div class="matriculas">
-          <span>REEMPLAZAR: matrícula</span>
+          <span>REEMPLAZAR: matrícula de Calvimontes</span>
         </div>
       </div>
     </div>
@@ -434,6 +490,24 @@
     -->
     <div class="proxima">La Unidad incorpora progresivamente otras disciplinas al abordaje
     del dolor crónico. Las novedades se publican en esta página.</div>
+  </section>
+
+  <section class="seccion env" id="procedimientos">
+    <div class="titulo"><h2>Procedimientos</h2><i></i></div>
+    <div class="galeria">
+      <figure><img src="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/procedimiento_01.jpg" alt="Procedimiento en la Unidad de Tratamiento del Dolor" loading="lazy"></figure>
+      <figure><img src="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/procedimiento_02.jpg" alt="Procedimiento en la Unidad de Tratamiento del Dolor" loading="lazy"></figure>
+      <figure><img src="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/procedimiento_03.jpg" alt="Procedimiento en la Unidad de Tratamiento del Dolor" loading="lazy"></figure>
+      <figure><img src="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/procedimiento_04.jpg" alt="Procedimiento en la Unidad de Tratamiento del Dolor" loading="lazy"></figure>
+      <figure><img src="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/procedimiento_05.jpg" alt="Procedimiento en la Unidad de Tratamiento del Dolor" loading="lazy"></figure>
+      <figure><img src="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/procedimiento_06.jpg" alt="Procedimiento en la Unidad de Tratamiento del Dolor" loading="lazy"></figure>
+      <figure><img src="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/procedimiento_07.jpg" alt="Procedimiento en la Unidad de Tratamiento del Dolor" loading="lazy"></figure>
+      <figure><img src="https://raw.githubusercontent.com/FrancoFalco/utd-assets/refs/heads/main/procedimiento_08.jpg" alt="Procedimiento en la Unidad de Tratamiento del Dolor" loading="lazy"></figure>
+    </div>
+    <p class="aclaracion">Los procedimientos se realizan en quirófano o en sala de
+    procedimientos, con guía por imagen y bajo condiciones de esterilidad. Las imágenes
+    corresponden a la actividad habitual de la Unidad y no muestran datos de ningún
+    paciente.</p>
   </section>
 
   <section class="seccion env">
@@ -465,6 +539,8 @@
         <h4>Consultorios</h4>
         <div class="fila"><span>IMC</span><span>Av. Sagrada Familia 359</span></div>
         <div class="fila"><span>Salvador</span><span>Gral. Deheza 542</span></div>
+        <div class="fila"><span>Italiano</span><span>Roma 550</span></div>
+        <div class="fila"><span>Reina Fabiola</span><span>Elías Yofre 1050</span></div>
       </div>
     </div>
     <p class="legal">El contenido de este sitio tiene carácter informativo y no reemplaza la
