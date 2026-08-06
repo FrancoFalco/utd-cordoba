@@ -100,6 +100,47 @@
   .via .cta svg { width: 15px; height: 15px; transition: transform .18s ease; }
   .via:hover .cta svg { transform: translateX(4px); }
 
+  /* ---------- Panel desplegable de cada acceso ----------
+     Las tarjetas dejaron de ser enlaces directos: cada una abre un panel con
+     las opciones reales. El motivo es que "solicitar recetas" y "pedir turno"
+     no son una sola cosa, sino una bifurcación según el paciente ya esté o no
+     en los registros de la Unidad. */
+  .via { cursor: pointer; text-align: left; font: inherit; width: 100%; }
+  .via[aria-expanded="true"] { border-color: var(--tinta); }
+  .panel { background: var(--papel); border: 1px solid var(--tinta); border-radius: 4px;
+           padding: 28px; margin-top: 16px; box-shadow: var(--sombra); }
+  .panel[hidden] { display: none; }
+  .panel h3 { font-size: 19px; font-weight: 600; letter-spacing: -.015em; margin: 0 0 6px; }
+  .panel .expl { color: var(--grafito); font-size: 15px; margin: 0 0 20px; }
+  .opciones { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .opcion { border: 1px solid var(--regla); border-radius: 4px; padding: 20px; }
+  .opcion h4 { font-size: 16px; font-weight: 600; margin: 0 0 5px; }
+  .opcion p { font-size: 14px; color: var(--grafito); margin: 0 0 14px; }
+  .campo { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+           text-transform: uppercase; color: var(--grafito); margin: 0 0 6px; }
+  .panel input, .panel textarea {
+      width: 100%; padding: 11px 13px; font-size: 15.5px; font-family: var(--sans);
+      border: 1px solid var(--regla); border-radius: 3px; background: var(--papel);
+      color: var(--tinta); margin-bottom: 14px; }
+  .panel textarea { min-height: 108px; resize: vertical; }
+  .panel input:focus, .panel textarea:focus { outline: 2px solid var(--tinta);
+      outline-offset: 1px; border-color: var(--tinta); }
+  .boton { display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+           width: 100%; padding: 13px 20px; font-family: var(--sans); font-size: 15px;
+           font-weight: 600; border: 0; border-radius: 3px; cursor: pointer;
+           background: var(--tinta); color: #fff; text-decoration: none;
+           transition: background .15s ease; }
+  .boton:hover { background: #000; }
+  .boton.claro { background: var(--papel); color: var(--tinta);
+                 border: 1px solid var(--regla); }
+  .boton.claro:hover { background: var(--papel); border-color: var(--tinta); }
+  .boton svg { width: 16px; height: 16px; }
+  .apostilla { font-size: 13.5px; color: var(--grafito); margin: 16px 0 0;
+               padding-top: 16px; border-top: 1px solid var(--regla); }
+  .apostilla a { color: var(--tinta); font-weight: 600; }
+  @media (max-width: 700px) { .opciones { grid-template-columns: 1fr; }
+                              .panel { padding: 20px; } }
+
   /* ---------- Consultorios ---------- */
   .rejilla2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .sede { background: var(--papel); border: 1px solid var(--regla); border-radius: 4px;
@@ -264,58 +305,138 @@
     <div class="titulo"><h2>Acceso</h2><i></i></div>
     <div class="rejilla3">
 
-      <a class="via anim d1" href="mailto:drfalco.recetas@gmail.com?subject=Solicitud%20de%20recetas">
-        <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M8 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2"/>
-          <rect x="8" y="2" width="8" height="4" rx="1"/>
-          <path d="M9 13h6M12 10v6"/>
-        </svg>
+      <button class="via anim d1" type="button" aria-expanded="false" aria-controls="p-recetas"
+              onclick="abrirPanel('recetas')">
+        <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 13h6M12 10v6"/></svg>
         <div class="cond">Solo pacientes de la Unidad</div>
         <h3>Solicitar recetas</h3>
-        <p>Envíe un correo en blanco y recibirá en el momento su enlace personal para pedir
-        la renovación. El pedido lo revisa el profesional antes de emitirse. Si todavía no
-        es paciente, primero solicite un turno.</p>
-        <span class="cta">Escribir al buzón
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
+        <p>Renovación de la medicación indicada por la Unidad. El pedido lo revisa el
+        profesional antes de emitirse.</p>
+        <span class="cta">Ver cómo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
 
-      <a class="via anim d2" href="https://wa.me/5493513198607?text=Hola%2C%20quisiera%20solicitar%20un%20turno%20en%20la%20Unidad%20de%20Tratamiento%20del%20Dolor.">
-        <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="5" width="18" height="16" rx="2"/>
-          <path d="M3 10h18M8 3v4M16 3v4"/>
-          <path d="M9 15l2 2 4-4"/>
-        </svg>
+      <button class="via anim d2" type="button" aria-expanded="false" aria-controls="p-turno"
+              onclick="abrirPanel('turno')">
+        <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M9 15l2 2 4-4"/></svg>
         <div class="cond">Primera consulta o seguimiento</div>
         <h3>Pedir un turno</h3>
-        <p>Presencial en nuestros consultorios o por videollamada. Escríbanos por WhatsApp y
-        coordinamos día y horario. No hace falta ser paciente de la Unidad.</p>
-        <span class="cta">Escribir por WhatsApp
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
+        <p>Presencial en cualquiera de nuestros consultorios o por videollamada. No hace
+        falta ser paciente de la Unidad.</p>
+        <span class="cta">Ver opciones <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
 
-      <a class="via anim d3" href="https://wa.me/5493513198607?text=Hola%2C%20tengo%20una%20consulta." id="contacto">
-        <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M20 15a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"/>
-          <path d="M8 9h8M8 13h5"/>
-        </svg>
+      <button class="via anim d3" type="button" id="contacto" aria-expanded="false"
+              aria-controls="p-contacto" onclick="abrirPanel('contacto')">
+        <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 15a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg>
         <div class="cond">Consultas administrativas</div>
         <h3>Escribirnos</h3>
-        <p>Dudas sobre un turno, estudios previos, coberturas o comprobantes. También por
-        correo a francofalco.neurocirugia@gmail.com. Los mensajes se leen en horario de
-        atención, de lunes a viernes.</p>
-        <span class="cta">Escribir por WhatsApp
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
+        <p>Dudas sobre un turno, estudios previos, coberturas o comprobantes. Los mensajes
+        se leen en horario de atención.</p>
+        <span class="cta">Ver opciones <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
 
+    </div>
+
+    <!-- ===== Panel: recetas ===== -->
+    <div class="panel" id="p-recetas" hidden>
+      <h3>Solicitud de recetas</h3>
+      <p class="expl">Solo emitimos recetas a pacientes de la Unidad, es decir, a personas
+      que ya figuran en nuestros registros de atención.</p>
+      <div class="opciones">
+        <div class="opcion">
+          <h4>Ya soy paciente de la Unidad</h4>
+          <p>Ingrese su documento. Si figura en nuestros registros, le enviamos el acceso
+          al correo que tenemos registrado. Por su seguridad, el enlace nunca se muestra
+          en pantalla.</p>
+          <form method="GET" action="https://script.google.com/macros/s/AKfycbxwUo283g2A_Gw5LIhhJunTgQalp79IyuaZtN1dATs8V84iOzQmAIpc3NXA0mLmu4NISw/exec" target="_blank" rel="noopener">
+            <input type="hidden" name="v" value="accesorecetas">
+            <label class="campo" for="dniRec">Documento</label>
+            <input id="dniRec" name="dni" type="tel" inputmode="numeric" required
+                   minlength="7" maxlength="10" placeholder="Solo números"
+                   autocomplete="off">
+            <button class="boton" type="submit">Enviarme el acceso</button>
+          </form>
+        </div>
+        <div class="opcion">
+          <h4>Todavía no soy paciente</h4>
+          <p>No podemos emitir recetas a quien no atendimos: para indicar o renovar una
+          medicación necesitamos haberlo evaluado. Si se atendió con nosotros y aun así no
+          lo encontramos, escríbanos y lo resolvemos.</p>
+          <a class="boton claro" href="https://wa.me/5493513198607?text=Hola%2C%20necesito%20recetas%20pero%20no%20figuro%20en%20los%20registros%20de%20la%20Unidad.">Escribir por WhatsApp</a>
+          <p style="margin:12px 0 0;font-size:13.5px;">O solicite un turno desde la tarjeta
+          de al lado.</p>
+        </div>
+      </div>
+      <p class="apostilla">La renovación no es automática: el profesional revisa cada
+      pedido. La medicación de receta archivada no puede tramitarse a distancia.</p>
+    </div>
+
+    <!-- ===== Panel: turno ===== -->
+    <div class="panel" id="p-turno" hidden>
+      <h3>Solicitud de turno</h3>
+      <p class="expl">Elija la modalidad que le resulte más conveniente.</p>
+      <div class="opciones">
+        <div class="opcion">
+          <h4>Presencial</h4>
+          <p>En el Instituto Modelo de Cardiología, el Sanatorio del Salvador, el Hospital
+          Italiano o la Clínica Reina Fabiola, según el profesional y el día.</p>
+          <a class="boton" href="https://wa.me/5493513198607?text=Hola%2C%20quisiera%20un%20turno%20presencial%20en%20la%20Unidad%20de%20Tratamiento%20del%20Dolor.">Coordinar por WhatsApp</a>
+          <p style="margin:12px 0 0;font-size:13.5px;">También puede llamar directamente a
+          la central de turnos de cada centro:
+          <a href="#consultorios" onclick="cerrarPaneles()">ver teléfonos y horarios</a>.</p>
+        </div>
+        <div class="opcion">
+          <h4>Virtual</h4>
+          <p>Videollamada con el profesional. Si ya es paciente de la Unidad, ingrese su
+          documento y le enviamos el acceso para elegir día y horario.</p>
+          <form method="GET" action="https://script.google.com/macros/s/AKfycbxwUo283g2A_Gw5LIhhJunTgQalp79IyuaZtN1dATs8V84iOzQmAIpc3NXA0mLmu4NISw/exec" target="_blank" rel="noopener">
+            <input type="hidden" name="v" value="accesotele">
+            <label class="campo" for="dniTele">Documento</label>
+            <input id="dniTele" name="dni" type="tel" inputmode="numeric" required
+                   minlength="7" maxlength="10" placeholder="Solo números"
+                   autocomplete="off">
+            <button class="boton" type="submit">Enviarme el acceso</button>
+          </form>
+          <p style="margin:0;font-size:13.5px;">¿Es su primera consulta?
+          <a href="https://wa.me/5493513198607?text=Hola%2C%20quisiera%20una%20primera%20consulta%20virtual.">Escríbanos</a>
+          y la coordinamos.</p>
+        </div>
+      </div>
+      <p class="apostilla">En la consulta virtual, el profesional confirma el turno antes
+      de que usted abone nada.</p>
+    </div>
+
+    <!-- ===== Panel: contacto ===== -->
+    <div class="panel" id="p-contacto" hidden>
+      <h3>Escribirnos</h3>
+      <p class="expl">Respondemos en el horario de atención de la Unidad, de lunes a viernes.</p>
+      <div class="opciones">
+        <div class="opcion">
+          <h4>Por WhatsApp</h4>
+          <p>La vía más rápida. Le respondemos por el mismo medio.</p>
+          <a class="boton" href="https://wa.me/5493513198607?text=Hola%2C%20tengo%20una%20consulta.">Abrir WhatsApp</a>
+          <p style="margin:12px 0 0;font-size:13.5px;">351 319-8607</p>
+        </div>
+        <div class="opcion">
+          <h4>Por correo</h4>
+          <p>Complete el formulario y su mensaje nos llega directamente.</p>
+          <form method="POST" action="https://script.google.com/macros/s/AKfycbxwUo283g2A_Gw5LIhhJunTgQalp79IyuaZtN1dATs8V84iOzQmAIpc3NXA0mLmu4NISw/exec" target="_blank" rel="noopener">
+            <input type="hidden" name="v" value="contacto">
+            <label class="campo" for="cNom">Nombre y apellido</label>
+            <input id="cNom" name="nombre" type="text" required maxlength="120">
+            <label class="campo" for="cMail">Correo</label>
+            <input id="cMail" name="correo" type="email" required maxlength="120"
+                   placeholder="correo@ejemplo.com">
+            <label class="campo" for="cTel">Teléfono (opcional)</label>
+            <input id="cTel" name="telefono" type="tel" maxlength="30">
+            <label class="campo" for="cMsj">Mensaje</label>
+            <textarea id="cMsj" name="mensaje" required maxlength="1500"></textarea>
+            <button class="boton" type="submit">Enviar</button>
+          </form>
+        </div>
+      </div>
+      <p class="apostilla">No incluya información clínica sensible en el formulario. Si
+      necesita enviarnos estudios o antecedentes, se lo indicaremos al responderle.</p>
     </div>
   </section>
 
@@ -437,7 +558,7 @@
           <li><span class="que">Médico</span>
               <span class="donde">Universidad Nacional de Córdoba<small>Egresado en 2016</small></span></li>
           <li><span class="que">Neurocirugía</span>
-              <span class="donde">Especialista · Consejo Médico de la Provincia de Córdoba</span></li>
+              <span class="donde">Especialista · Consejo Médico de la Provincia de Córdoba<small>Formación en el Nuevo Hospital San Roque, Córdoba</small></span></li>
           <li><span class="que">Medicina del dolor</span>
               <span class="donde">Especialista · Universidad Favaloro</span></li>
           <li><span class="que">Staff</span>
@@ -467,7 +588,7 @@
           <li><span class="que">Médico cirujano</span>
               <span class="donde">Universidad Nacional de Córdoba<small>Egresado en 2009</small></span></li>
           <li><span class="que">Neurocirugía</span>
-              <span class="donde">Especialista · Hospital Nuestra Señora de la Misericordia, Córdoba</span></li>
+              <span class="donde">Especialista · Consejo Médico de la Provincia de Córdoba<small>Formación en el Hospital Nuestra Señora de la Misericordia, Córdoba</small></span></li>
           <li><span class="que">Neurocirugía funcional</span>
               <span class="donde">Especialista en cirugía estereotáctica, neurocirugía funcional y radiocirugía · Hospital Italiano de Buenos Aires</span></li>
           <li><span class="que">Medicina del dolor</span>
@@ -550,6 +671,44 @@
 </footer>
 
 <script>
+  /**
+   * Paneles de acceso. Cada tarjeta abre uno solo y cierra los demás: dos
+   * paneles abiertos a la vez harían perder de vista cuál corresponde a cuál.
+   * Se usa el atributo hidden en lugar de una clase para que el contenido
+   * quede realmente fuera del alcance de los lectores de pantalla y del
+   * tabulador mientras está cerrado.
+   */
+  function cerrarPaneles() {
+    ['recetas', 'turno', 'contacto'].forEach(function (k) {
+      document.getElementById('p-' + k).hidden = true;
+    });
+    document.querySelectorAll('.via').forEach(function (b) {
+      b.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  function abrirPanel(cual) {
+    var panel = document.getElementById('p-' + cual);
+    var abierto = !panel.hidden;
+    cerrarPaneles();
+    if (abierto) return;                       // segundo clic: cierra
+    panel.hidden = false;
+    var boton = document.querySelector('[aria-controls="p-' + cual + '"]');
+    if (boton) boton.setAttribute('aria-expanded', 'true');
+    var campo = panel.querySelector('input:not([type=hidden])');
+    if (campo && window.matchMedia('(min-width: 700px)').matches) campo.focus();
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // Deja pasar solo dígitos en los campos de documento: un DNI con puntos o
+  // espacios llega al servidor como texto y la búsqueda falla en silencio.
+  document.querySelectorAll('input[name="dni"]').forEach(function (c) {
+    c.addEventListener('input', function () {
+      var limpio = c.value.replace(/\D/g, '');
+      if (limpio !== c.value) c.value = limpio;
+    });
+  });
+
   // Sombra de la barra al desplazarse. Único efecto ligado al scroll, y pasivo
   // para no interferir con el desplazamiento en el teléfono.
   (function () {
